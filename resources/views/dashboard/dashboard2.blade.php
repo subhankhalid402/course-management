@@ -278,11 +278,11 @@
                         <div class="card-body bg-info rounded p-5">
                             <div class="row align-items-center">
                                 <div class="col-4">
-                                    <i class="fa-solid fa-venus-mars fs-2hx text-white">
+                                    <i class="fa-solid fa-chart-bar fs-2hx text-white">
                                     </i>
                                 </div>
                                 <div class="col-8 text-end">
-                                    <span class="text-capitalize fs-5 text-white mb-2">Mate</span>
+                                    <span class="text-capitalize fs-5 text-white mb-2">Stats</span>
                                     <h2 class="font-weight-bold fs-2hx mb-0 text-white">{{ $mate_count }}</h2>
                                 </div>
                             </div>
@@ -296,11 +296,11 @@
                             <div class="card-body bg--warning rounded p-5">
                                 <div class="row align-items-center">
                                     <div class="col-4">
-                                        <i class="fa-solid fa-dog fs-2hx text-white">
+                                        <i class="fa-solid fa-chart-bar fs-2hx text-white">
                                         </i>
                                     </div>
                                     <div class="col-8 text-end">
-                                        <span class="text-capitalize fs-5 text-white mb-2">Play</span>
+                                        <span class="text-capitalize fs-5 text-white mb-2">stats</span>
                                         <h2 class="font-weight-bold fs-2hx mb-0 text-white">{{ $play_count }}</h2>
                                     </div>
                                 </div>
@@ -315,11 +315,11 @@
                             <div class="card-body bg-primary rounded p-5">
                                 <div class="row align-items-center">
                                     <div class="col-4">
-                                        <i class="fa-solid fa-person-circle-question fs-2hx text-white">
+                                        <i class="fa-solid fa-chart-bar fs-2hx text-white">
                                         </i>
                                     </div>
                                     <div class="col-8 text-end">
-                                            <span class="text-capitalize fs-5 text-white mb-2">Missing</span>
+                                            <span class="text-capitalize fs-5 text-white mb-2">Data stats</span>
                                         <h2 class="font-weight-bold fs-2hx mb-0 text-white">{{ $missing_count }}</span>
                                     </div>
                                 </div>
@@ -334,11 +334,11 @@
                             <div class="card-body bg-success rounded p-5">
                                 <div class="row align-items-center">
                                     <div class="col-4">
-                                        <i class="fa-solid fa-shield-dog fs-2hx text-white">
+                                        <i class="fa-solid fa-chart-bar fs-2hx text-white">
                                         </i>
                                     </div>
                                     <div class="col-8 text-end">
-                                        <span class="text-capitalize fs-5 text-white mb-2">Adopt</span>
+                                        <span class="text-capitalize fs-5 text-white mb-2">Data stats</span>
                                         <h2 class="font-weight-bold fs-2hx mb-0 text-white">{{ $adopt_count }}</h2>
                                     </div>
                                 </div>
@@ -362,7 +362,7 @@
                                     </div>
                                     <div class="widget-two__content">
                                         <span class="h2 font-weight-bold text-dark mb-0">{{ $male_dogs_count }}</span>
-                                        <h5 class="text-capitalize text-dark-emphasis mb-2">Male Dogs</h5>
+                                        <h5 class="text-capitalize text-dark-emphasis mb-2">Male</h5>
                                     </div>
 {{--                                    <a class="widget-two__btn btn-outline--danger border border-danger-subtle" href="{{env('base_url').'dogs/investments'}}">View All</a>--}}
                                 </div>
@@ -382,7 +382,7 @@
                                     </div>
                                     <div class="widget-two__content">
                                         <span class="h2 font-weight-bold text-dark mb-0">{{ $female_dogs_count }}</span>
-                                        <h5 class="text-capitalize text-dark-emphasis mb-2">Female Dogs</h5>
+                                        <h5 class="text-capitalize text-dark-emphasis mb-2">Female</h5>
                                     </div>
 {{--                                    <a class="widget-two__btn btn-outline--warning border border-warning-subtle" href="{{env('base_url').'dogs/investments?status=pending'}}">View All</a>--}}
                                 </div>
@@ -412,78 +412,6 @@
                                 </div>
                             </div>
                         </div><!--End of card-->
-                    </div>
-                </div>
-                <!--end::Row-->
-
-                <!--begin::Row-->
-                <div class="row gy-5 g-xl-10">
-                    <div class="col-xl-4 mb-xl-10">
-                        <div class="card">
-                            <!--begin::Header-->
-                            <div class="card-header pt-5">
-                                <!--begin::Title-->
-                                <h4 class="card-title d-flex align-items-start flex-column">
-                                    <span
-                                        class="card-label fw-bold text-gray-800">Dogs</span>
-                                </h4>
-                                <!--end::Title-->
-                            </div>
-                            <!--end::Header-->
-                            <!--begin::Body-->
-                            <div class="card-body py-6">
-                                <div class="portlet-body" id="dogs-pie-div">
-                                    <canvas id="dogs-pie" width="500" height="400"></canvas>
-                                </div>
-                            </div>
-                            <!--End of card-->
-                        </div>
-
-                    </div>
-
-                    <div class="col-xl-8 mb-xl-10">
-                        <div class="card">
-                            <!--begin::Header-->
-                            <div class="card-header pt-5">
-                                <!--begin::Title-->
-                                <h4 class="card-title d-flex align-items-start flex-column">
-                                    <span
-                                        class="card-label fw-bold text-gray-800">Recent 20  Registerations </span>
-                                </h4>
-                                <!--end::Title-->
-                            </div>
-                            <!--end::Header-->
-                            <!--begin::Body-->
-                            <div class="card-body py-6">
-                                <table class="table align-middle border rounded table-row-dashed fs-6 g-5"
-                                       id="datatable">
-                                    <thead>
-                                    <!--begin::Table row-->
-                                    <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase">
-                                        <th class="min-w-50px">Name</th>
-                                        <th>Dog Gender</th>
-                                        <th>Preference</th>
-                                        <th>Registration Date</th>
-                                        <th>Breed</th>
-                                    </tr>
-                                    <!--end::Table row-->
-                                    </thead>
-                                    <tbody class="fw-semibold text-gray-600">
-                                    @foreach($recent_users as $r_user)
-                                        <tr>
-                                            <td>{{$r_user->name}}</td>
-                                            <td>{{$r_user->dog->gender ?? ""}}</td>
-                                            <td>{{$r_user->dog->preference ?? ""}}</td>
-                                            <td>{{$r_user->created_at_formatted ?? ""}}</td>
-                                            <td>{{$r_user->dog->breed ?? ""}}</td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!--End of card-->
-                        </div>
-
                     </div>
                 </div>
                 <!--end::Row-->
