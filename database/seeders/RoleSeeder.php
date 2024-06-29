@@ -24,9 +24,9 @@ class RoleSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ],
             [
-                'name' => 'User',
-                'code' => 'user',
-                'notes' => 'Normal User',
+                'name' => 'Student',
+                'code' => 'student',
+                'notes' => 'student',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],

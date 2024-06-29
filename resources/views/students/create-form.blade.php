@@ -85,7 +85,7 @@
                 <label class="fs-5 fw-semibold mb-2">
                     <span class="">Batch</span>
                 </label>
-                <select name="batches[]" id="batches" class="form-control form-control-solid">
+                <select name="batch[]" id="batch" class="form-control form-control-solid">
                     @foreach ($batches as $batch)
                         <option value="{{ $batch->id }}">{{ $batch->title }}</option>
                     @endforeach
@@ -97,7 +97,7 @@
                 <label class="fs-5 fw-semibold mb-2">
                     <span class="required">Courses</span>
                 </label>
-                <select name="courses[]" id="courses" class="form-control form-control-solid" multiple>
+                <select name="courses[]" id="courses" class="form-control form-control-solid">
                     @foreach ($courses as $course)
                         <option value="{{ $course->id }}">{{ $course->title }}</option>
                     @endforeach
@@ -131,7 +131,7 @@
                     name="state" id="state" />
             </div>
 
-           
+
             <!-- Notes -->
             <div class="col-md-4 fv-row">
                 <label class="fs-5 fw-semibold mb-2">
@@ -190,7 +190,7 @@
                 'admission_date': $('#admission_date').val(),
                 'gender': $('#gender').val(),
                 'cnic': $('#cnic').val(),
-                'batches': $('#batches').val(),
+                'batch': $('#batch').val(),
                 'address': $('#address').val(),
                 'city': $('#city').val(),
                 'state': $('#state').val(),

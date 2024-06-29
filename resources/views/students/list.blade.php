@@ -122,6 +122,7 @@
                                                     <!--begin::Table row-->
                                                     <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase">
                                                         <th class="min-w-100px">ID</th>
+                                                        <th class="text-center min-w-100px">Action</th>
                                                         <th class="min-w-100px">Name</th>
                                                         <th class="min-w-100px">Email</th>
                                                         <th class="min-w-100px">Phone</th>
@@ -145,7 +146,7 @@
                                                         <th class="min-w-100px">Is Active</th>
                                                         <th class="min-w-100px">Created At</th>
                                                         <th class="min-w-100px">Updated At</th>
-                                                        <th class="text-center min-w-100px">Action</th>
+
                                                     </tr>
                                                     <!--end::Table row-->
                                                 </thead>
@@ -153,6 +154,29 @@
                                                     @foreach ($users as $user)
                                                         <tr>
                                                             <td>{{ $user->id ?? '-' }}</td>
+                                                            <td class="text-center">
+                                                                                                                            <a href="#"
+                                                                                                                                class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
+                                                                                                                                data-kt-menu-trigger="click"
+                                                                                                                                data-kt-menu-placement="bottom-end">Actions
+                                                                                                                                <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
+                                                                                                                            <!--begin::Menu-->
+                                                                                                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
+                                                                                                                                data-kt-menu="true">
+                                                                                                                                <!--begin::Menu item-->
+                                                                                                                                <div class="menu-item px-3">
+                                                                                                                                    <a href="{{ env('BASE_URL') . 'payments/create?student_id=' . $user->id }}"
+                                                                                                                                        class="menu-link px-3">
+                                                                                                                                        <i class="bi bi-money text-info"></i>
+                                                                                                                                        &nbsp;&nbsp;Payment</a>
+                                                                                                                                </div>
+                                                                                                                                <!--end::Menu item-->
+                                                                                                                                <!--begin::Menu item-->
+                                                                                                                                
+                                                                                                                                <!--end::Menu item-->
+                                                                                                                            </div>
+                                                                                                                            <!--end::Menu-->
+                                                                                                                        </td>
                                                             <td>{{ $user->name ?? '-' }}</td>
                                                             <td>{{ $user->email ?? '-' }}</td>
                                                             <td>{{ $user->phone ?? '-' }}</td>
@@ -178,44 +202,7 @@
                                                             <td>{{ $user->created_at ?? '-' }}</td>
                                                             <td>{{ $user->updated_at ?? '-' }}</td>
 
-                                                            <td class="text-center">
-                                                                <a href="#"
-                                                                    class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
-                                                                    data-kt-menu-trigger="click"
-                                                                    data-kt-menu-placement="bottom-end">Actions
-                                                                    <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
-                                                                <!--begin::Menu-->
-                                                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
-                                                                    data-kt-menu="true">
-                                                                    <!--begin::Menu item-->
-                                                                    <div class="menu-item px-3">
-                                                                        <a href="{{ env('BASE_URL') . 'students/' . $user->id . '/edit' }}"
-                                                                            class="menu-link px-3">
-                                                                            <i class="bi bi-pencil-square text-info"></i>
-                                                                            &nbsp;&nbsp;Edit </a>
-                                                                    </div>
-                                                                    <!--end::Menu item-->
-                                                                    <!--begin::Menu item-->
-                                                                    <div class="menu-item px-3">
-                                                                        <a href="{{ env('BASE_URL') . 'payments/create?student_id=' . $user->id }}"
-                                                                            class="menu-link px-3">
-                                                                            <i class="bi bi-pencil-square text-info"></i>
-                                                                            &nbsp;&nbsp;Payment</a>
-                                                                    </div>
-                                                                    <!--end::Menu item-->
-                                                                    <!--begin::Menu item-->
-                                                                    <div class="menu-item px-3 delete-record-btn"
-                                                                        api-hook="students/delete"
-                                                                        data-id="{{ $user->id }}">
-                                                                        <span class="menu-link px-3">
-                                                                            <i class="bi bi-x-circle text-danger"></i>
-                                                                            &nbsp;&nbsp;Delete
-                                                                        </span>
-                                                                    </div>
-                                                                    <!--end::Menu item-->
-                                                                </div>
-                                                                <!--end::Menu-->
-                                                            </td>
+
                                                         </tr>
                                                     @endforeach
                                                 </tbody>

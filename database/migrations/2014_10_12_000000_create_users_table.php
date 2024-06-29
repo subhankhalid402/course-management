@@ -16,6 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->foreignId('role_id')->nullable()->constrained();
+            $table->foreignId('batch_id')->nullable();
             $table->string('name')->nullable();
             $table->string('email')->unique()->nullable();
             $table->string('password')->nullable();
@@ -26,7 +27,6 @@ class CreateUsersTable extends Migration
             $table->date('admission_date')->nullable();
             $table->enum('gender', ['M', 'F'])->nullable();
             $table->string('cnic')->nullable();
-            $table->integer('batch_id')->nullable();
             $table->string('phone_code')->nullable();
             $table->string('otp')->nullable();
             $table->string('address')->nullable();

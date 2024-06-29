@@ -8,13 +8,16 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $users = User::with(['courses', 'batch'])->get();
+        $users = User::with(['courses', 'batch'])->whereHas('role', function ($role) {
+            $role->where("code", "student");
+        })->get();
         return view('students.list', compact('users'));
     }
 
@@ -23,7 +26,7 @@ class UserController extends Controller
         $roles = Role::all();
         $courses = Course::all();
         $batches = Batch::all();
-        
+
         return view('students.create', compact('batches', 'courses' ,'roles'));
     }
 
@@ -34,17 +37,18 @@ class UserController extends Controller
             'email' => 'required|unique:users',
             'phone' => 'nullable',
         ]);
-    
+
         if ($validator->fails()) {
             return response()->json([
                 'status' => false,
                 'message' => $validator->errors()->first()
             ]);
         }
-    
+
         $role = Role::firstWhere('code', 'student');
-    
+
         $user = User::create([
+            'batch_id' => $request->batch,
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -59,24 +63,20 @@ class UserController extends Controller
             'cnic' => $request->cnic,
             'city' => $request->city,
             'state' => $request->state,
-            'notes' => $request->notes,
-            'created_by' => $request->created_by,
+            'created_by' => Session::get("user")->id,
         ]);
-    
+
         if ($request->courses) {
             $user->courses()->attach($request->courses);
         }
-        if ($request->batches) {
 
-            $user->batches()->attach($request->batches);
-        }
         return response()->json([
             'status' => true,
             'message' => 'User saved successfully',
             'user' => $user, // Optionally return the saved user data
         ]);
     }
-    
+
     public function edit($id)
     {
         $user = User::with(['courses', 'batch'])->find($id);
