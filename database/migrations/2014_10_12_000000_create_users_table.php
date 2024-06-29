@@ -21,6 +21,12 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->string('image')->nullable();
             $table->string('phone')->nullable();
+            $table->string('education')->nullable();
+            $table->date('dob')->nullable();
+            $table->date('admission_date')->nullable();
+            $table->enum('gender', ['M', 'F'])->nullable();
+            $table->string('cnic')->nullable();
+            $table->integer('batch_id')->nullable();
             $table->string('phone_code')->nullable();
             $table->string('otp')->nullable();
             $table->string('address')->nullable();
@@ -32,6 +38,7 @@ class CreateUsersTable extends Migration
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
             $table->string('reset_password_token')->nullable();
+            $table->bigInteger('created_by')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('is_active')->default(1)->nullable();
             $table->rememberToken();

@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('page_title','Create Dog')
+@section('page_title','Create Batch')
 @section('content')
     <!--begin::Content wrapper-->
     <div class="d-flex flex-column flex-column-fluid">
@@ -18,9 +18,9 @@
                 <!--begin::Actions-->
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <!--begin::Primary button-->
-                    <a href="{{env('BASE_URL').'dogs'}}" class="btn btn-sm fw-bold btn-primary">
+                    <a href="{{env('BASE_URL').'batches'}}" class="btn btn-sm fw-bold btn-primary">
                         <i class="bi bi-list-check"></i>
-                        Dogs List
+                        Batches List
                     </a>
                     <!--end::Primary button-->
                 </div>
@@ -43,7 +43,7 @@
                             <div class="row mb-3">
                                 <!--begin::Col-->
                                 <div class="col-md-12 pe-lg-10">
-                                    @include('dogs.create-form')
+                                    @include('batches.create-form')
                                 </div>
                                 <!--end::Col-->
                                 <!--end::Col-->

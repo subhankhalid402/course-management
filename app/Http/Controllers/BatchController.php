@@ -10,29 +10,26 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
-class UserController extends Controller
+class BatchController extends Controller
 {
     public function index()
     {
-        $users = User::with(['courses', 'batch'])->get();
-        return view('students.list', compact('users'));
+        $batches = Batch::get();
+        return view('batches.list', compact('batches'));
     }
 
     public function create()
     {
-        $roles = Role::all();
-        $courses = Course::all();
         $batches = Batch::all();
         
-        return view('students.create', compact('batches', 'courses' ,'roles'));
+        return view('batches.create', compact('batches'));
     }
 
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|unique:users',
-            'phone' => 'nullable',
+            'title' => 'required',
+            
         ]);
     
         if ($validator->fails()) {
@@ -42,38 +39,16 @@ class UserController extends Controller
             ]);
         }
     
-        $role = Role::firstWhere('code', 'student');
     
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
-            'password' => Hash::make($request->password),
-            'role_id' => $role->id,
-            'address' => $request->address,
-            'notes' => $request->notes,
-            'education' => $request->education,
-            'dob' => $request->dob,
-            'admission_date' => $request->admission_date,
-            'gender' => $request->gender,
-            'cnic' => $request->cnic,
-            'city' => $request->city,
-            'state' => $request->state,
-            'notes' => $request->notes,
-            'created_by' => $request->created_by,
+        $batch = Batch::create([
+            'title' => $request->title,
+
         ]);
     
-        if ($request->courses) {
-            $user->courses()->attach($request->courses);
-        }
-        if ($request->batches) {
-
-            $user->batches()->attach($request->batches);
-        }
         return response()->json([
             'status' => true,
-            'message' => 'User saved successfully',
-            'user' => $user, // Optionally return the saved user data
+            'message' => 'Batch saved successfully',
+            'batch' => $batch, // Optionally return the saved user data
         ]);
     }
     

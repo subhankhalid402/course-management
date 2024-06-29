@@ -7,10 +7,10 @@
     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
         <!--begin::Logo image-->
         <img alt="Logo" src="{{asset('assets/media/logo.png')}}"
-             class="h-50px app-sidebar-logo-minimize"/>
+             class="h-75px app-sidebar-logo-minimize"/>
         <a href="{{ env('BASE_URL') }}">
             <img alt="Logo" src="{{asset('assets/media/logo.png')}}"
-                 class="h-125px app-sidebar-logo-default"/>
+                 class="h-150px app-sidebar-logo-default"/>
         </a>
         <!--end::Logo image-->
         <!--begin::Sidebar toggle-->
@@ -69,113 +69,43 @@
                 </div>
                 <!--end:Menu item-->
 
-                <!--begin:Menu item-->
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ isset($menu) && ($menu == 'preference_play' || $menu == 'preference_mate' || $menu == 'preference_missing' || $menu == 'preference_adopt') ? 'here show' : '' }}">
+
+                  <!--begin:Menu item-->
+                  <div class="menu-item">
                     <!--begin:Menu link-->
-                    <span class="menu-link">
-                        <span class="">
-                            <i class="bi bi-stack fs-3 mx-2"></i>
-                        </span>
-                        <span class="menu-title fw-bold">Preferences</span>
-                        <span class="menu-arrow"></span>
-                    </span>
+                    <a class="menu-link {{ isset($menu) && $menu == 'students' ? 'active' : '' }}"
+                       href="{{env('BASE_URL').'students'}}">
+                        <i class="bi bi-bar-chart-line fs-3 mx-2"></i>
+                        <span class="menu-title fw-bold">Student</span>
+                    </a>
                     <!--end:Menu link-->
-                    <!--begin:Menu sub-->
-                    <div class="menu-sub menu-sub-accordion menu-active-bg">
-                        <!--begin:Menu item-->
-                        <div class="menu-item">
+                </div>
+                <!--end:Menu item-->
 
-                            <!--begin:Menu link-->
-                            <a class="menu-link {{ isset($menu) && $menu == 'preference_play' ? 'active' : '' }}" href="{{env('BASE_URL').'dogs?preference=play'}}">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title fw-bold">Play</span>
-                            </a>
-                            <!--end:Menu link-->
 
-                            <!--begin:Menu link-->
-                            <a class="menu-link {{ isset($menu) && $menu == 'preference_mate' ? 'active' : '' }}" href="{{env('BASE_URL').'dogs?preference=mate'}}">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title fw-bold">Mate</span>
-                            </a>
-                            <!--end:Menu link-->
-
-                            <!--begin:Menu link-->
-                            <a class="menu-link {{ isset($menu) && $menu == 'preference_missing' ? 'active' : '' }}" href="{{env('BASE_URL').'dogs?preference=missing'}}">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title fw-bold">Missing</span>
-                            </a>
-                            <!--end:Menu link-->
-                            <!--begin:Menu link-->
-                            <a class="menu-link {{ isset($menu) && $menu == 'preference_adopt' ? 'active' : '' }}" href="{{env('BASE_URL').'dogs?preference=adopt'}}">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title fw-bold">Adopt</span>
-                            </a>
-                            <!--end:Menu link-->
-                        </div>
-                        <!--end:Menu item-->
-                    </div>
-                    <!--end:Menu sub-->
+                  <!--begin:Menu item-->
+                  <div class="menu-item">
+                    <!--begin:Menu link-->
+                    <a class="menu-link {{ isset($menu) && $menu == 'batches' ? 'active' : '' }}"
+                       href="{{env('BASE_URL').'batches'}}">
+                        <i class="bi bi-bar-chart-line fs-3 mx-2"></i>
+                        <span class="menu-title fw-bold">Batches</span>
+                    </a>
+                    <!--end:Menu link-->
                 </div>
                 <!--end:Menu item-->
 
                 <!--begin:Menu item-->
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ isset($menu) && ($menu == 'terms_and_conditions' || $menu == 'privacy_policy' || $menu == 'contact_us') ? 'here show' : '' }}">
+                <div class="menu-item">
                     <!--begin:Menu link-->
-                    <span class="menu-link">
-                        <span class="">
-                            <i class="bi bi-info-square-fill fs-3 mx-2"></i>
-                        </span>
-                        <span class="menu-title fw-bold">Support</span>
-                        <span class="menu-arrow"></span>
-                    </span>
+                    <a class="menu-link {{ isset($menu) && $menu == 'payments' ? 'active' : '' }}"
+                       href="{{env('BASE_URL').'payments'}}">
+                        <i class="bi bi-bar-chart-line fs-3 mx-2"></i>
+                        <span class="menu-title fw-bold">Payments</span>
+                    </a>
                     <!--end:Menu link-->
-                    <!--begin:Menu sub-->
-                    <div class="menu-sub menu-sub-accordion menu-active-bg">
-                        <!--begin:Menu item-->
-                        <div class="menu-item">
-
-                            <!--begin:Menu link-->
-                            <a class="menu-link {{ isset($menu) && $menu == 'terms_and_conditions' ? 'active' : '' }}" href="{{env('BASE_URL').'support/terms-and-conditions'}}">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title fw-bold">Terms and Conditions</span>
-                            </a>
-                            <!--end:Menu link-->
-
-                            <!--begin:Menu link-->
-                            <a class="menu-link {{ isset($menu) && $menu == 'privacy_policy' ? 'active' : '' }}" href="{{env('BASE_URL').'support/privacy-policy'}}">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title fw-bold">Privacy Policy</span>
-                            </a>
-                            <!--end:Menu link-->
-
-                            <!--begin:Menu link-->
-                            <a class="menu-link {{ isset($menu) && $menu == 'contact_us' ? 'active' : '' }}" href="{{env('BASE_URL').'support/contact-us'}}">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title fw-bold">Contact Us</span>
-                            </a>
-                            <!--end:Menu link-->
-
-                        </div>
-                        <!--end:Menu item-->
-                    </div>
-                    <!--end:Menu sub-->
                 </div>
                 <!--end:Menu item-->
-
 
                 <!--begin:Menu item-->
                 <div class="menu-item">

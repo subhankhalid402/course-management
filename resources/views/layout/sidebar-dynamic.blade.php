@@ -7,10 +7,10 @@
     <div class="app-sidebar-logo px-6" id="kt_app_sidebar_logo">
         <!--begin::Logo image-->
         <img alt="Logo" src="{{asset('assets/media/logo.png')}}"
-             class="h-20px app-sidebar-logo-minimize"/>
+             class="h-40px app-sidebar-logo-minimize"/>
         <a href="{{ env('BASE_URL') }}">
             <img alt="Logo" src="{{asset('assets/media/logo.png')}}"
-                 class="h-25px app-sidebar-logo-default"/>
+                 class="h-35px app-sidebar-logo-default"/>
         </a>
         <!--end::Logo image-->
         <!--begin::Sidebar toggle-->

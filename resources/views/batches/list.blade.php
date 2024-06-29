@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('page_title','Dogs List')
+@section('page_title', 'Batches List')
 @section('content')
     <!--begin::Content wrapper-->
     <div class="d-flex flex-column flex-column-fluid">
@@ -18,15 +18,15 @@
                 <!--begin::Actions-->
                 <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <!--begin::Primary button-->
-{{--                                    <span id="create-user-from-modal" class="btn btn-sm fw-bold  btn-secondary">--}}
-{{--                                        <i class="bi bi-fullscreen-exit"></i>--}}
-{{--                                        Create in modal--}}
-{{--                                    </span>--}}
-{{--                    <a href="{{env('BASE_URL').'dogs/create'}}" class="btn btn-sm fw-bold btn-primary">--}}
-{{--                        <i class="bi bi-plus-square"></i>--}}
-{{--                        Create--}}
-{{--                    </a>--}}
-                <!--end::Primary button-->
+                    <span id="create-user-from-modal" class="btn btn-sm fw-bold  btn-secondary">
+                        <i class="bi bi-fullscreen-exit"></i>
+                        Create in modal
+                    </span>
+                    <a href="{{ env('BASE_URL') . 'batches/create' }}" class="btn btn-sm fw-bold btn-primary">
+                        <i class="bi bi-plus-square"></i>
+                        Create
+                    </a>
+                    <!--end::Primary button-->
                 </div>
                 <!--end::Actions-->
             </div>
@@ -47,8 +47,8 @@
                             <div class="row mb-3">
                                 <!--begin::Col-->
                                 <div class="col-md-12 pe-lg-10">
-                                {{--CONTENT HERE--}}
-                                <!--begin::Table-->
+                                    {{-- CONTENT HERE --}}
+                                    <!--begin::Table-->
 
                                     <div class="card card-p-0 card-flush">
                                         <div class="card-header align-items-center py-5 gap-2 gap-md-5">
@@ -58,8 +58,8 @@
                                                     <i class="ki-duotone ki-magnifier fs-1 position-absolute ms-4"><span
                                                             class="path1"></span><span class="path2"></span></i>
                                                     <input type="text" data-kt-filter="search"
-                                                           class="form-control form-control-solid w-250px ps-14"
-                                                           placeholder="Search Report"/>
+                                                        class="form-control form-control-solid w-250px ps-14"
+                                                        placeholder="Search Report" />
                                                 </div>
                                                 <!--end::Search-->
                                                 <!--begin::Export buttons-->
@@ -69,16 +69,15 @@
                                             <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                                                 <!--begin::Export dropdown-->
                                                 <button type="button" class="btn btn-light-primary"
-                                                        data-kt-menu-trigger="click"
-                                                        data-kt-menu-placement="bottom-end">
+                                                    data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                                     <i class="ki-duotone ki-exit-down fs-2"><span
                                                             class="path1"></span><span class="path2"></span></i>
                                                     Export Report
                                                 </button>
                                                 <!--begin::Menu-->
                                                 <div id="datatable_export_menu"
-                                                     class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4"
-                                                     data-kt-menu="true">
+                                                    class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4"
+                                                    data-kt-menu="true">
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
                                                         <a href="#" class="menu-link px-3" data-kt-export="copy">
@@ -118,83 +117,61 @@
                                         </div>
                                         <div class="card-body">
                                             <table class="table align-middle border rounded table-row-dashed fs-6 g-5"
-                                                   id="datatable">
+                                                id="datatable">
                                                 <thead>
-                                                <!--begin::Table row-->
-                                                <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase">
-                                                    <th class="min-w-100px">User name</th>
-                                                    <th class="min-w-100px">Dog Name</th>
-                                                    <th class="min-w-100px">Gender</th>
-                                                    <th class="min-w-100px">DOB</th>
-                                                    <th class="min-w-100px">Breed</th>
-                                                    <th class="min-w-100px">Preference</th>
-                                                    <th class="text-center min-w-100px">Action</th>
-                                                </tr>
-                                                <!--end::Table row-->
+                                                    <!--begin::Table row-->
+                                                    <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase">
+                                                        <th class="min-w-100px">ID</th>
+                                                        <th class="min-w-100px">Title</th>
+                                                        <th class="text-center min-w-100px">Action</th>
+                                                    </tr>
+                                                    <!--end::Table row-->
                                                 </thead>
                                                 <tbody class="fw-semibold text-gray-600">
-                                                @foreach($dogs as $dog)
-                                                    <tr>
-                                                        <td>
-                                                            {{$dog->user->name}}
-                                                        </td>
-                                                        <td>
-                                                            {{$dog->name}}
-                                                        </td>
-                                                        <td>
-                                                            {{$dog->gender}}
-                                                        </td>
-                                                        <td>
-                                                            {{$dog->born_month }} - {{$dog->born_year}}
-                                                        </td>
-                                                        <td>
-                                                            {{$dog->breed}}
-                                                        </td>
-                                                        <td>
-                                                            {{$dog->preference}}
-                                                        </td>
-
-                                                        <td class="text-center">
-                                                            <a href="#"
-                                                               class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
-                                                               data-kt-menu-trigger="click"
-                                                               data-kt-menu-placement="bottom-end">Actions
-                                                                <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
-                                                            <!--begin::Menu-->
-                                                            <div
-                                                                class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
-                                                                data-kt-menu="true">
-                                                                <!--begin::Menu item-->
-                                                                <div class="menu-item px-3">
-                                                                    <a href="{{env('BASE_URL').'dogs/'.$dog->id.'/edit'}}"
-                                                                       class="menu-link px-3">
-                                                                        <i class="bi bi-pencil-square text-info"></i>
-                                                                        &nbsp;&nbsp;Edit </a>
+                                                    @foreach ($batches as $batch)
+                                                        <tr>
+                                                            <td>{{ $batch->id ?? '-' }}</td>
+                                                            <td>{{ $batch->title ?? '-' }}</td>
+                                                           
+                                                            <td class="text-center">
+                                                                <a href="#"
+                                                                    class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
+                                                                    data-kt-menu-trigger="click"
+                                                                    data-kt-menu-placement="bottom-end">Actions
+                                                                    <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
+                                                                <!--begin::Menu-->
+                                                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
+                                                                    data-kt-menu="true">
+                                                                    <!--begin::Menu item-->
+                                                                    <div class="menu-item px-3">
+                                                                        <a href="{{ env('BASE_URL') . 'batches/' . $batch->id . '/edit' }}"
+                                                                            class="menu-link px-3">
+                                                                            <i class="bi bi-pencil-square text-info"></i>
+                                                                            &nbsp;&nbsp;Edit </a>
+                                                                    </div>
+                                                                    <!--end::Menu item-->
+                                                                    <!--begin::Menu item-->
+                                                                    <div class="menu-item px-3 delete-record-btn"
+                                                                        api-hook="batches/delete"
+                                                                        data-id="{{ $batch->id }}">
+                                                                        <span class="menu-link px-3">
+                                                                            <i class="bi bi-x-circle text-danger"></i>
+                                                                            &nbsp;&nbsp;Delete
+                                                                        </span>
+                                                                    </div>
+                                                                    <!--end::Menu item-->
                                                                 </div>
-                                                                <!--end::Menu item-->
-                                                                <!--begin::Menu item-->
-                                                                <div class="menu-item px-3 delete-record-btn"
-                                                                     api-hook="dogs/delete"
-                                                                     data-id="{{$dog->id}}">
-                                                                                                                            <span
-                                                                                                                                class="menu-link px-3">
-                                                                                                                                <i class="bi bi-x-circle text-danger"></i>
-                                                                                                                                &nbsp;&nbsp;Delete
-                                                                                                                            </span>
-                                                                </div>
-                                                                <!--end::Menu item-->
-                                                            </div>
-                                                            <!--end::Menu-->
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
+                                                                <!--end::Menu-->
+                                                            </td>
+                                                        </tr>
+                                                    @endforeach
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
 
                                     <!--end::Table-->
-                                    {{--END- CONTENT HERE--}}
+                                    {{-- END- CONTENT HERE --}}
 
                                 </div>
                                 <!--end::Col-->
@@ -218,11 +195,13 @@
 
 @section('page_level_scripts')
     <script type="text/javascript">
-        $(document).ready(function () {
-            initialize_datatable({document_title: 'Dogs List'})
+        $(document).ready(function() {
+            initialize_datatable({
+                document_title: 'Batches List'
+            })
         });
 
-        $(document).on('click', '#create-user-from-modal', function () {
+        $(document).on('click', '#create-user-from-modal', function() {
             $('#create-user-modal').modal('show');
         });
     </script>

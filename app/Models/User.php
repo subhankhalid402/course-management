@@ -39,6 +39,15 @@ class User extends Authenticatable
         return $this->hasOne(Attachment::class, 'object_id', 'id')->where('object', 'User');
     }
 
+    public function batch()
+    {
+        return $this->belongsTo(Batch::class);
+    }
+
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class);
+    }
     public function getCreatedAtFormattedAttribute()
     {
         if (empty($this->created_at)) {

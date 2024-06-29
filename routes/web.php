@@ -66,10 +66,23 @@ Route::middleware('CheckUser')->group(function () {
         Route::get('/{id}/edit', '\App\Http\Controllers\UserController@edit');
     });
 
-    Route::prefix('/dogs')->group(function () {
-        Route::get('/', '\App\Http\Controllers\DogController@index');
-        Route::get('/create', '\App\Http\Controllers\DogController@create');
-        Route::get('/{id}/edit', '\App\Http\Controllers\DogController@edit');
+    Route::prefix('/students')->group(function () {
+        Route::get('/', '\App\Http\Controllers\UserController@index');
+        Route::get('/create', '\App\Http\Controllers\UserController@create');
+        Route::get('/{id}/edit', '\App\Http\Controllers\UserController@edit');
+    });
+
+    Route::prefix('/payments')->group(function () {
+        Route::get('/', '\App\Http\Controllers\PaymentController@index');
+        Route::get('/create', '\App\Http\Controllers\PaymentController@create');
+        Route::get('/{id}/edit', '\App\Http\Controllers\PaymentController@edit');
+    });
+
+    
+    Route::prefix('/batches')->group(function () {
+        Route::get('/', '\App\Http\Controllers\BatchController@index');
+        Route::get('/create', '\App\Http\Controllers\BatchController@create');
+        Route::get('/{id}/edit', '\App\Http\Controllers\BatchController@edit');
     });
 
 

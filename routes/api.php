@@ -29,6 +29,26 @@ Route::prefix('/users')->group(function () {
     Route::post('/delete', '\App\Http\Controllers\UserController@destroy');
 });
 
+
+Route::prefix('/payments')->group(function () {
+    Route::post('/store', '\App\Http\Controllers\PaymentController@store');
+    Route::post('/update', '\App\Http\Controllers\PaymentController@update');
+    Route::post('/delete', '\App\Http\Controllers\PaymentController@destroy');
+});
+
+
+Route::prefix('/students')->group(function () {
+    Route::post('/store', '\App\Http\Controllers\UserController@store');
+    Route::post('/update', '\App\Http\Controllers\UserController@update');
+    Route::post('/delete', '\App\Http\Controllers\UserController@destroy');
+});
+
+Route::prefix('/batches')->group(function () {
+    Route::post('/store', '\App\Http\Controllers\BatchController@store');
+    Route::post('/update', '\App\Http\Controllers\BatchController@update');
+    Route::post('/delete', '\App\Http\Controllers\BatchController@destroy');
+});
+
 Route::prefix('/dogs')->group(function () {
     Route::post('/store', '\App\Http\Controllers\DogController@store');
     Route::post('/update', '\App\Http\Controllers\DogController@update');
