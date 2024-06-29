@@ -17,21 +17,28 @@ class Payment extends Model
         'status',
         'payment_method',
         'paid_by',
-        'attachments'
+        'attachments',
+        'invoice_no',
+        'amount',
+        'paid_to',
+        'paid_by',
+        'item_service',
+        'program_name',
+        'date'
     ];
 
     protected $casts = [
         'attachments' => 'array',
     ];
     public function user()
-{
-    return $this->belongsTo(User::class);
-}
+    {
+        return $this->belongsTo(User::class);
+    }
 
-public function course()
-{
-    return $this->belongsTo(Course::class);
-}
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 
 
 }

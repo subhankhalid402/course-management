@@ -76,6 +76,7 @@ Route::middleware('CheckUser')->group(function () {
         Route::get('/', '\App\Http\Controllers\PaymentController@index');
         Route::get('/create', '\App\Http\Controllers\PaymentController@create');
         Route::get('/{id}/edit', '\App\Http\Controllers\PaymentController@edit');
+        Route::get('{id}/invoice', '\App\Http\Controllers\PdfController@viewPdf');
     });
 
     

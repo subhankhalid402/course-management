@@ -123,8 +123,8 @@
                                                     <!--begin::Table row-->
                                                     <tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase">
                                                         <th class="min-w-100px">ID</th>
-                                                        <th class="min-w-100px">User ID</th>
-                                                        <th class="min-w-100px">Course ID</th>
+                                                        <th class="min-w-100px">Student Name</th>
+                                                        <th class="min-w-100px">Enrolled Course</th>
                                                         <th class="min-w-100px">Amount</th>
                                                         <th class="min-w-100px">Status</th>
                                                         <th class="min-w-100px">Payment Method</th>
@@ -140,8 +140,16 @@
                                                     @foreach ($payments as $payment)
                                                         <tr>
                                                             <td>{{ $payment->id ?? '-' }}</td>
-                                                            <td>{{ $payment->user_id ?? '-' }}</td>
-                                                            <td>{{ $payment->course_id ?? '-' }}</td>
+                                                            <td>{{ $payment->user->name ?? '-' }}</td>
+                                                            <td>
+                                                                @if (isset($payment->user->courses))
+                                                                    @foreach ($payment->user->courses as $course)
+                                                                        {{ $course->title ?? '-' }}
+                                                                    @endforeach
+                                                                @else
+                                                                    -
+                                                                @endif
+                                                            </td>
                                                             <td>{{ $payment->amount ?? '-' }}</td>
                                                             <td>{{ $payment->status ?? '-' }}</td>
                                                             <td>{{ $payment->payment_method ?? '-' }}</td>
@@ -164,6 +172,14 @@
                                                                             class="menu-link px-3">
                                                                             <i class="bi bi-pencil-square text-info"></i>
                                                                             &nbsp;&nbsp;Edit </a>
+                                                                    </div>
+                                                                    <!--end::Menu item-->
+                                                                      <!--begin::Menu item-->
+                                                                      <div class="menu-item px-3">
+                                                                        <a href="{{ env('BASE_URL') . 'payments/' . $payment->id . '/invoice' }}"
+                                                                            class="menu-link px-3">
+                                                                            <i class="bi bi-pencil-square text-info"></i>
+                                                                            &nbsp;&nbsp;Invoice</a>
                                                                     </div>
                                                                     <!--end::Menu item-->
                                                                     <!--begin::Menu item-->

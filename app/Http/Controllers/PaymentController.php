@@ -16,7 +16,8 @@ class PaymentController extends Controller
 {
     public function index()
     {
-        $payments = Payment::all();
+        $payments = Payment::with('user.courses')->get();
+        // dd($payments->toArray());
         return view('payments.list', compact('payments'));
     }
 
@@ -53,7 +54,7 @@ class PaymentController extends Controller
 
 
         $payment = Payment::create([
-            'user_id' => Auth::id(),
+            'user_id' => $request->student_id,
             'course_id' => $request->course_id,
             'amount' => $request->amount,
             'status' => $request->status,

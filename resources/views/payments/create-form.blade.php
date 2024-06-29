@@ -85,6 +85,7 @@
             function getFormData() {
                 return {
                     'amount': $('#amount').val(),
+                    'student_id': "{{ request()->student_id }}",
                     'status': $('#status').val(),
                     'payment_method': $('#payment_method').val(),
                     'paid_by': $('#paid_by').val(),
