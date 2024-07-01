@@ -49,6 +49,16 @@
                         name="paid_by" id="paid_by" />
                 </div>
 
+
+                <!-- Paid By -->
+                <div class="col-md-4 fv-row">
+                    <label class="fs-5 fw-semibold mb-2">
+                        <span class="">Paid To</span>
+                    </label>
+                    <input type="text" class="form-control form-control-solid" placeholder="Enter Paid To"
+                        name="paid_to" id="paid_to" />
+                </div>
+
                 <!-- Attachments -->
                 <div class="col-md-4 fv-row">
                     <label class="fs-5 fw-semibold mb-2">
@@ -76,9 +86,32 @@
         <script type="text/javascript">
             $(document).on('click', '#payment-save-btn', function(e) {
                 e.preventDefault();
-                do_post_ajax({
-                    'api_hook': 'payments/store',
-                    'data': getFormData(),
+                // do_post_ajax({
+                //     'api_hook': 'payments/store',
+                //     'data': getFormData(),
+                // });
+                disable_submit_btn();
+                $.ajax({
+                    url: api_url + 'payments/store',
+                    method: 'POST',
+                    data: JSON.stringify(getFormData()),
+                    dataType: "JSON",
+                    contentType: "application/json",
+                    success: function(response) {
+                        enable_submit_btn();
+                        if (response.status) {
+                            success_toaster(response.message);
+                            // Navigate to the payments page
+                            window.location.assign(base_url + "payments");
+
+                            // Open the response path in a new tab
+                            window.open(response.path, "_blank");
+
+                            return true;
+                        } else {
+                            error_toaster(response.message);
+                        }
+                    }
                 });
             });
 
@@ -89,7 +122,8 @@
                     'status': $('#status').val(),
                     'payment_method': $('#payment_method').val(),
                     'paid_by': $('#paid_by').val(),
-                    'file' : $('#file').val(),
+                    'paid_to': $('#paid_to').val(),
+                    'file': $('#file').val(),
                 };
             }
         </script>

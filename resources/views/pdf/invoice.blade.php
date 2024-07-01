@@ -61,37 +61,37 @@
         <h2>STATEMENT OF RECEIPT</h2>
         <div class="form-group">
             <label for="amount">Amount:</label>
-            <div id="amount" class="value">{{ $pay->amount }}</div>
+            <div id="amount" class="value">{{ $pay->amount ?? '' }}</div>
         </div>
         <div class="form-group">
             <label for="paid-to">Paid to:</label>
-            <div id="paid-to" class="value">{{ $pay->paid_to }}</div>
+            <div id="paid-to" class="value">{{ $pay->paid_to ?? '' }}</div>
         </div>
         <div class="form-group">
             <label for="paid-by">Paid by:</label>
-            <div id="paid-by" class="value">{{ $pay->paid_by }}</div>
+            <div id="paid-by" class="value">{{ $pay->paid_by ?? '' }}</div>
         </div>
         <div class="form-group">
             <label for="for">For (item/service):</label>
-            <div id="for" class="value">{{ $pay->item_service }}</div>
+            <div id="for" class="value">{{ $pay->item_service ?? 'Course' }}</div>
         </div>
         <div class="form-group">
-            <label for="program">Name of program:</label>
-            <div id="program" class="value">{{ $pay->program_name }}</div>
+            <label for="program">Name of Course:</label>
+            <div id="program" class="value">{{ $course[0]->title ?? '' }}</div>
         </div>
         <div class="form-footer">
             <div class="signature">
                 <label for="recipient-signature">Signature of Recipient:</label>
-                <div id="recipient-signature" class="value">{{ $student->name }}</div>
+                <div id="recipient-signature" class="value">{{ '' }}</div>
             </div>
             <div class="date">
-                <label for="date">Date:</label>
-                <div id="date" class="value">{{ $pay->date }}</div>
+                <label for="date">Date:  {{ $pay->created_at ? $pay->created_at->format('F j, Y') : '' }}</label>
+                {{-- <div id="date" class="value"> {{ $pay->created_at ? $pay->created_at->format('F j, Y, g:i a') : '' }}</div> --}}
             </div>
         </div>
         <div class="form-group">
             <label for="recipient-name">Printed Name of Recipient:</label>
-            <div id="recipient-name" class="value">{{ $student->name }}</div>
+            <div id="recipient-name" class="value">{{ $student->name ?? '' }}</div>
         </div>
     </div>
 </body>

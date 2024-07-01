@@ -19,6 +19,9 @@ class PdfController extends Controller
         ]);
     }
     $user = User::where("id", $payment->user_id)->first();
+    // $user = User::whereHas('role', function ($query) {
+    //     $query->where('code', 'student');
+    // })->where('id' , $payment->user_id);
 
 //    $pdf = PDF::loadView('pdf.invoice', ['pay' => $payment, 'student' => $user], [], [
 //        'title' => 'Invoice',

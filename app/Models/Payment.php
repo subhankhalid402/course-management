@@ -27,9 +27,11 @@ class Payment extends Model
         'date'
     ];
 
-    protected $casts = [
-        'attachments' => 'array',
-    ];
+    protected $appends = ["invoice_path"];
+
+    // protected $casts = [
+    //     'attachments' => 'array',
+    // ];
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -38,6 +40,11 @@ class Payment extends Model
     public function course()
     {
         return $this->belongsTo(Course::class);
+    }
+
+    public function getInvoicePathAttribute()
+    {
+        return asset('uploads/invoice/' . $this->id . '.pdf') . '?v=' . date('ymdhis');
     }
 
 
