@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Batch;
 use App\Models\Course;
 use App\Models\Role;
+use App\Models\Payment;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use PDF;
 
 class UserController extends Controller
 {
@@ -27,7 +29,7 @@ class UserController extends Controller
         $courses = Course::all();
         $batches = Batch::all();
 
-        return view('students.create', compact('batches', 'courses' ,'roles'));
+        return view('students.create', compact('batches', 'courses', 'roles'));
     }
 
     public function store(Request $request)
@@ -83,6 +85,37 @@ class UserController extends Controller
         $roles = Role::all();
         return view('users.edit', compact('user', 'roles'));
     }
+
+
+
+    public function forminfo(Request $request)
+    {
+        // Retrieve student information based on student_id query parameter
+        $studentId = $request->query('student_id');
+        $user = User::whereHas('role', function ($query) {
+            $query->where('code', 'student');
+        })->where('id', $studentId)->first();
+    
+        if ($user) {
+            $courses = $user->courses;
+        } else {
+            $courses = collect(); // Empty collection if user not found
+        }
+    
+        // Generate PDF with student and courses data
+        $pdf = PDF::loadView('pdf.forminfo', [
+            'student' => $user,
+            'courses' => $courses,
+        ], [], [
+            'title' => 'Student Information',
+            'margin_top' => 10
+        ]);
+    
+        // Stream the generated PDF as a response
+        return $pdf->stream('student_information.pdf');
+    }
+    
+
 
     public function update(Request $request, $id)
     {

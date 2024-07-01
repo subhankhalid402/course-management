@@ -70,6 +70,7 @@ Route::middleware('CheckUser')->group(function () {
         Route::get('/', '\App\Http\Controllers\UserController@index');
         Route::get('/create', '\App\Http\Controllers\UserController@create');
         Route::get('/{id}/edit', '\App\Http\Controllers\UserController@edit');
+        Route::get('/info', '\App\Http\Controllers\UserController@forminfo');
     });
 
     Route::prefix('/payments')->group(function () {

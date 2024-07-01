@@ -176,7 +176,7 @@
                                                                     <!--end::Menu item-->
                                                                       <!--begin::Menu item-->
                                                                       <div class="menu-item px-3">
-                                                                        <a href="{{ env('BASE_URL') . 'payments/' . $payment->id . '/invoice' }}"
+                                                                        <a href="{{ $payment->invoice_path }}"
                                                                             class="menu-link px-3">
                                                                             <i class="bi bi-pencil-square text-info"></i>
                                                                             &nbsp;&nbsp;Invoice</a>

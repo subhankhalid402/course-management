@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use PDF;
 
 class PaymentController extends Controller
 {
@@ -60,6 +61,7 @@ class PaymentController extends Controller
             'status' => $request->status,
             'payment_method' => $request->payment_method,
             'paid_by' => $request->paid_by,
+            'paid_to' => $request->paid_to,
         ]);
 
 
@@ -87,10 +89,38 @@ class PaymentController extends Controller
             ]);
         }
 
+
+        $user = User::whereHas('role', function ($query) {
+            $query->where('code', 'student');
+        })->where('id' , $payment->user_id)->first();
+
+        $courses = $user->courses;
+
+        // dd($courses->toArray());
+
+        // $course = User::with('user.courses')->get();
+        if ($user) {
+            $courses = $user->courses; 
+        } else {
+            $courses = collect();
+        }
+    
+        $pdf = PDF::loadView('pdf.invoice', ['pay' => $payment, 'student' => $user , 'course' => $courses], [], [
+            'title' => 'Invoice',
+            'margin_top' => 10
+        ]);
+    
+        $filePath = public_path('uploads/invoice/' . $payment->id . '.pdf');
+    
+        $pdf->save($filePath);
+    
+        $openPath = asset('uploads/invoice/' . $payment->id . '.pdf') . '?v=' . date('ymdhis');
+
         return response()->json([
             'status' => true,
             'message' => 'Payment saved successfully',
             'payment' => $payment,
+            'path' => $openPath
         ]);
     }
 

@@ -21,7 +21,9 @@ class CreatePaymentsTable extends Migration
             $table->enum('status', ['paid', 'pending'])->nullable();
             $table->string('payment_method')->nullable();
             $table->string('paid_by')->nullable();
-            $table->json('attachments')->nullable();
+            $table->string('paid_to')->nullable();
+            $table->string('attachment')->nullable();
+            $table->string('invoice_name')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

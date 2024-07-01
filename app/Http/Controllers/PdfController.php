@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class PdfController extends Controller
 {
-    public function viewPdf(Request $request)
+    public function viewPdf($id)
 {
-    $payment = Payment::findOrFail($request->id);
+    $payment = Payment::findOrFail($id);
 
     if (empty($payment->id)) {
         return response()->json([
@@ -20,7 +20,7 @@ class PdfController extends Controller
     }
     $user = User::whereHas('role', function ($query) {
         $query->where('code', 'student');
-    })->firstOrFail();
+    })->where('id' , $payment->user_id);
 
     $pdf = PDF::loadView('pdf.invoice', ['pay' => $payment, 'student' => $user], [], [
         'title' => 'Invoice',
