@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class PdfController extends Controller
 {
-    public function viewPdf(Request $request)
+    public function viewPdf($id)
 {
-    $payment = Payment::findOrFail($request->id);
+    $payment = Payment::findOrFail($id);
 
     if (empty($payment->id)) {
         return response()->json([
@@ -18,22 +18,20 @@ class PdfController extends Controller
             'message' => 'Invoice number is not set for this payment.'
         ]);
     }
-    $user = User::whereHas('role', function ($query) {
-        $query->where('code', 'student');
-    })->firstOrFail();
+    $user = User::where("id", $payment->user_id)->first();
 
-    $pdf = PDF::loadView('pdf.invoice', ['pay' => $payment, 'student' => $user], [], [
-        'title' => 'Invoice',
-        'margin_top' => 10
-    ]);
-
-    $filePath = public_path('uploads/invoice/' . $payment->id . '.pdf');
-
-    $pdf->save($filePath);
+//    $pdf = PDF::loadView('pdf.invoice', ['pay' => $payment, 'student' => $user], [], [
+//        'title' => 'Invoice',
+//        'margin_top' => 10
+//    ]);
+//
+//    $filePath = public_path('uploads/invoice/' . $payment->id . '.pdf');
+//
+//    $pdf->save($filePath);
 
     $openPath = asset('uploads/invoice/' . $payment->id . '.pdf') . '?v=' . date('ymdhis');
 
-    return $pdf->stream('3.pdf');
+
 }
 
         // $payments = Payment::all();
@@ -45,17 +43,17 @@ class PdfController extends Controller
         // $pdf = PDF::loadView('pdf.invoice', $data);
 
         // return $pdf->stream('invoice.pdf');
-        
+
         //     PDF::loadView('invoice.invoice', ['res' => Restaurant::find(1), 'sale' => $Sale], [], [
         //         'title' => 'Invoice',
         //         'margin_top' => 10
         //     ])->save(public_path() . '/uploads/invoice/' . $Sale->invoice_no . '.pdf');
-        
+
         //     $open_path = env('BASE_URL') . 'public/uploads/invoice/' . $Sale->invoice_no . '.pdf?v=' . date('ymdhis');
-        
+
         //     return response()->json([
         //         'status' => true,
         //         'pdf_link' => $open_path
         //         ]);
     }
-   
+
