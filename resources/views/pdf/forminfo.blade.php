@@ -204,7 +204,7 @@
                                     <td class="label">Courses:</td>
                                 </tr>
                                 <tr>
-                                    <td class="info">{{ $course[0]->title ?? 'N/A' }}</td>
+                                    <td class="info">{{ $courses[0]->title ?? 'N/A' }}</td>
                                 </tr>
                             </table>
                         </td>
